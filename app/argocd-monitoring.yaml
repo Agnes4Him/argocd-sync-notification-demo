@@ -3,7 +3,7 @@ kind: Job
 metadata:
   name: app-team-argocd-sync-fail-notification
   annotations:
-    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook: SyncFail
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   template:
