@@ -1,9 +1,9 @@
 apiVersion: batch/v1
-kind: Pod
+kind: Job
 metadata:
   name: app-team-argocd-sync-fail-notification
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook: PostSync
 spec:
   template:
     spec:
