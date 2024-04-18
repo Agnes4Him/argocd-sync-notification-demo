@@ -1,20 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: app-team-argocd-sync-fail-notification-
+  name: app-team-argocd-sync-fail-notification
   annotations:
-    #argocd.argoproj.io/hook: SyncFail
     argocd.argoproj.io/hook: PreSync
-    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
-    #argocd.argoproj.io/hook-delete-policy: HookFailed
-    #argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-    #argocd.argoproj.io/sync-wave: "1"
 spec:
   template:
     spec:
       containers:
       - name: team-notification
-        #image: curlimages/curl 
         image: ubuntu    
         command: ["echo", "This is pre-sync"]
       restartPolicy: Never
