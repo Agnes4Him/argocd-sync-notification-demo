@@ -1,21 +1,17 @@
-apiVersion: batch/v1
-kind: Job
+apiVersion: v1
+kind: Pod
 metadata:
-  generateName: app-team-argocd-sync-fail-notification
+  name: presync-pod
+  namespace: synctest
   annotations:
-    #argocd.argoproj.io/hook: SyncFail
-    argocd.argoproj.io/hook: PostSync
-    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
-    #argocd.argoproj.io/hook-delete-policy: HookFailed
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/hook: PreSync
+  labels:
+    app.kubernetes.io/name: presync-pod
 spec:
-  template:
-    spec:
-      containers:
-      - name: team-notification
-        #image: curlimages/curl 
-        image: ubuntu    
-        command: ["echo", "Hello"]
-      restartPolicy: Never
-  backoffLimit: 2
+  containers:
+  - name: myapp-container
+    image: ubuntu
+    command: ['bash', '-c', 'sleep 3 ; echo Presync']
+    imagePullPolicy: Always
+  restartPolicy: "Never"
