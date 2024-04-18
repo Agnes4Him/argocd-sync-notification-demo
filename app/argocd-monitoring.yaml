@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: app-team-argocd-sync-fail-notification
+  annotations:
+    #argocd.argoproj.io/hook: SyncFail
+    argocd.argoproj.io/hook: PostSync
+    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    #argocd.argoproj.io/hook-delete-policy: HookFailed
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  template:
+    spec:
+      containers:
+      - name: team-notification
+        #image: curlimages/curl 
+        image: ubuntu    
+        command: ["echo", "Hello"]
+      restartPolicy: Never
+  backoffLimit: 2
