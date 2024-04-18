@@ -3,10 +3,12 @@ kind: Job
 metadata:
   generateName: app-team-argocd-sync-fail-notification-
   annotations:
-    argocd.argoproj.io/hook: SyncFail
+    #argocd.argoproj.io/hook: SyncFail
+    argocd.argoproj.io/hook: PreSync
     #argocd.argoproj.io/hook-delete-policy: HookSucceeded
     #argocd.argoproj.io/hook-delete-policy: HookFailed
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    #argocd.argoproj.io/sync-wave: "1"
 spec:
   template:
     spec:
