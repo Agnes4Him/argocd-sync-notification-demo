@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: team-notification
-        image: curlimages/curl     
+        #image: curlimages/curl 
+        image: ubuntu    
         command: ["printenv"]
       restartPolicy: Never
   backoffLimit: 2
