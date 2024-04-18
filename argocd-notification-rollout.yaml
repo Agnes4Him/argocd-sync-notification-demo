@@ -13,6 +13,7 @@ spec:
         image: curlimages/curl     
         command: 
         - 'curl'
+        - '-XPOST'
         - '-H'
         - 'Content-type: application/json'
         - '-d'
