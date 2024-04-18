@@ -3,8 +3,8 @@ kind: Job
 metadata:
   name: app-team-argocd-sync-fail-notification
   annotations:
-    #argocd.argoproj.io/hook: SyncFail
-    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook: SyncFail
+    #argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   template:
@@ -17,7 +17,7 @@ spec:
         - '-H'
         - 'Content-type: application/json'
         - '-d'
-        - '{"text": "ArgoCD sync for demo app succeeded"}'
+        - '{"text": "ArgoCD sync for nginx demo app failed"}'
         - 'https://relhealth.webhook.office.com/webhookb2/a5e04e46-e370-482b-b122-b2ec90fa4bec@babd2876-4a15-44e3-98f0-f1126a52496a/IncomingWebhook/5324260c66644102bdc2d67be2b68ffe/ca5eb201-da10-42c7-b2d5-bae35e5c09d1'
       restartPolicy: Never
   backoffLimit: 2
