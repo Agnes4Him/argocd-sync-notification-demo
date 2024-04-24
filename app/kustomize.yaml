@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: kustomize-inline-example
 resources:
-  - https://raw.githubusercontent.com/argoproj/argocd-example-apps/master/kustomize-guestbook/
+  - argocd-monitoring.yaml
 patches:
   - target:
       kind: Job
